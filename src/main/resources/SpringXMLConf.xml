@@ -5,17 +5,22 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <bean     id="stu" class="SpringXmlDependencyInjection.Setter.Student">
-<!--       <property name="age" value="21"/>-->
-   </bean>
+<!--   <bean     id="stu" class="SpringXmlDependencyInjection.Setter.Student">-->
+<!--&lt;!&ndash;       <property name="age" value="21"/>&ndash;&gt;-->
+<!--   </bean>-->
+<!--    <bean id="std1" class="SpringXmlDependencyInjection.Setter.Student">-->
+<!--    </bean>-->
+<!--    <bean  class="SpringXmlDependencyInjection.Setter.Student">-->
+<!--    </bean>-->
 
-    <bean id="std1" class="SpringXmlDependencyInjection.Setter.Student">
+    <bean     id="stu" class="SpringXmlDependencyInjection.Scope.Student" scope="singleton">
 
     </bean>
 
-    <bean  class="SpringXmlDependencyInjection.Setter.Student">
+    <bean     id="lap" class="SpringXmlDependencyInjection.Scope.Laptop" scope="prototype">
 
     </bean>
+
 
 
 </beans>
