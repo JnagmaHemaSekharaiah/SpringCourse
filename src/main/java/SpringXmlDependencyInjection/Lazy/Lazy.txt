@@ -1,0 +1,33 @@
+Lazy init
+----------
+1.Spring Container will Create Object for each bean mentioning with <bean> tag (default 'singleton')
+2.It postpone the initialization of the Bean until it's first requested made. This is useful when the object creation is resource-intensive
+or when the object is not immediately required during the application startup.
+3.BY making lazy we can speed up the application
+
+
+ <bean id="stu" class="SpringXmlDependencyInjection.Lazy.Student" autowire="byType" >
+        <property name="Age" value="21"  />
+
+    </bean>
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Lazy.Laptop" primary="true">
+    </bean>
+
+    <bean id="cmp2" class="SpringXmlDependencyInjection.Lazy.Desktop"  lazy-init="true" >   /* This Desktop will wont create until call [getBean("")]is happen for this. Even though the it's lazy it is by default single ton */
+    </bean>
+
+
+Observation : if Non lazy bean depend on the lazy bean and we not requested made by using getBean("") method will create the object for the Lazy object.
+-----------
+
+<bean id="stu" class="SpringXmlDependencyInjection.Lazy.Student" autowire="byType" >
+        <property name="Age" value="21"  />
+        <property name="com" value="cmp2"> /* here non lazy bean(Student) depend on the lazy (Dektop)object.
+    </bean>
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Lazy.Laptop" primary="true">
+    </bean>
+
+    <bean id="cmp2" class="SpringXmlDependencyInjection.Lazy.Desktop"  lazy-init="true" >
+    </bean>
