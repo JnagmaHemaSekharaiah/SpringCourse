@@ -1,0 +1,127 @@
+Auto wiring
+-------------
+Autowiring in the Spring framework can inject dependencies automatically.
+Spring Container automatically detect the dependencies(byName/byType) according to the our Configuration file mentioning.
+
+
+============================================================================================================================================================
+
+Case 1(byName): if <property > value and auto wire value is different. Our frame work will prefer <property> attribute.
+
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byName" >
+        <property name="Age" value="21" />
+
+    </bean>
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Laptop">
+    </bean>
+
+    <bean id="cmp" class="SpringXmlDependencyInjection.Interface.Desktop">
+    </bean>
+
+class A
+{
+Computer cmp; cmp receive Desktop reference
+}
+
+============================================================================================================================================================
+
+
+Case 2(byType): if <property > value and auto wire value is different. Our frame work will prefer <property> attribute.
+In the below case it will choose  <property> tag value.
+
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byName" >
+        <property name="Age" value="21" />
+        <property name="cmp" ref="cmp1" />   /* mentioning explictly*/
+    </bean>
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Laptop">
+    </bean>
+
+    <bean id="cmp" class="SpringXmlDependencyInjection.Interface.Desktop">
+    </bean>
+
+class A
+{
+Computer cmp; cmp receive Laptop reference
+}
+
+============================================================================================================================================================
+
+Case 3 (byType) : if will detect decencies by type
+Note: here Computer is interface which is Desktop and Laptop type.
+
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byType" >
+        <property name="Age" value="21" />
+    </bean>
+
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Desktop">
+    </bean>
+
+class A
+{
+Computer cmp; cmp receive from dependency Desktop
+}
+============================================================================================================================================================
+
+Case 3 (byType) : if will detect decencies by type . But here two dependencies are type of computer. So our spring will confuse which one need to inject.
+To slove this problem 'Primary bean' comes here.
+Note: here Computer is interface which is Desktop and Laptop type.
+
+{*Problem*}
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byType" >
+        <property name="Age" value="21" />
+           </bean>
+
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Laptop">
+    </bean>
+
+    <bean id="cmp" class="SpringXmlDependencyInjection.Interface.DeskTop">
+    </bean>
+
+class A
+{
+Computer cmp;
+}
+
+{*Solution*}
+
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byType" >
+        <property name="Age" value="21" />
+
+    </bean>
+
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Desktop">
+    </bean>
+
+    <bean id="cmp" class="SpringXmlDependencyInjection.Interface.Desktop" primary=true>
+    </bean>
+
+class A
+{
+Computer cmp; cmp receive dependency from Desktop because 'primary=true'
+}
+
+
+Observation : if we mention explicitly with <property> tag. it will prefer <property> tage
+-----------
+<bean id="stu" class="SpringXmlDependencyInjection.Interface.Student" autowire="byType" >
+        <property name="Age" value="21" />
+        <property name="cmp" ref="cmp1" /
+    </bean>
+
+
+    <bean id="cmp1" class="SpringXmlDependencyInjection.Interface.Laptop">
+    </bean>
+
+    <bean id="cmp" class="SpringXmlDependencyInjection.Interface.Desktop" primary=true>
+    </bean>
+
+class A
+{
+Computer cmp; cmp receive Laptop
+}
+
