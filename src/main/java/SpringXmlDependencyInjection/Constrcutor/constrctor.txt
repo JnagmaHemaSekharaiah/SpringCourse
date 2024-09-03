@@ -1,0 +1,19 @@
+When we pass the attributes from .xml files Our class variables(Properties) will accept those values by order how we pass those arguments.
+So we can Pass the attributes from .xml files using of 'type' and 'index' 'name'  attributes we can solve above issue,
+
+<bean   id="car1" class="com.telusuko.Car"  >
+        <constructor-arg  <type="com.telusuko.Audi">/<index=0>/<name="<attribute name> >"  ref="lap" />
+        <constructor-arg  type="int"/index="1"/name="<attribute name>"                     value="21" />
+
+
+ <bean id="lap" class="SpringXmlDependencyInjection.Constrcutor.Laptop">
+    </bean>
+
+
+->We can also pass the attribute values using name attributes with help @ConstructorProperties
+
+@ConstructorProperties({"value1","value2"})
+public ClassName(int age, Laptop lap)
+{
+
+}
