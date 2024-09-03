@@ -13,13 +13,21 @@
 <!--    <bean  class="SpringXmlDependencyInjection.Setter.Student">-->
 <!--    </bean>-->
 
-    <bean     id="stu" class="SpringXmlDependencyInjection.Scope.Student" scope="singleton">
+<!--    Scope example-->
+<!--    <bean     id="stu" class="SpringXmlDependencyInjection.Scope.Student" scope="singleton">-->
+<!--    </bean>-->
+<!--    <bean     id="lap" class="SpringXmlDependencyInjection.Scope.Laptop" scope="prototype">-->
+<!--    </bean>-->
 
-    </bean>
+<!--  Ref example  -->
+        <bean     id="stu" class="SpringXmlDependencyInjection.Refrence.Student" >
+                <property name="Age" value="21" />
+                <property name="lap" ref="lap"/>
+        </bean>
 
-    <bean     id="lap" class="SpringXmlDependencyInjection.Scope.Laptop" scope="prototype">
+        <bean     id="lap" class="SpringXmlDependencyInjection.Refrence.Laptop" >
 
-    </bean>
+        </bean>
 
 
 
