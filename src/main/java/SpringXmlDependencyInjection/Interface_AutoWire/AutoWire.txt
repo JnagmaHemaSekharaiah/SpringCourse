@@ -66,7 +66,7 @@ Computer cmp; cmp receive from dependency Desktop
 ============================================================================================================================================================
 
 Case 3 (byType) : if will detect decencies by type . But here two dependencies are type of computer. So our spring will confuse which one need to inject.
-To slove this problem 'Primary bean' comes here.
+To slove this problem 'Primary' tag comes here.
 Note: here Computer is interface which is Desktop and Laptop type.
 
 {*Problem*}
