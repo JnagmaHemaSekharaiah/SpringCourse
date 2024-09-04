@@ -17,7 +17,7 @@ public class App
 //        System.out.println(std.getAge());
 //        std.compile();
 
-        Desktop dek = (Desktop) context.getBean("cmp2");
+
 
 
     }

@@ -1,0 +1,19 @@
+Inner Bean
+-----------
+By making a bean inside bean (Inside bean) other bean can not access the inner bean Dependcy
+
+example:    /* Here Deskop Bean only accessable to Student Class */
+---------
+ <bean id="stu" class="SpringXmlDependencyInjection.InnerBean.Student" >
+       <property name="age" value="20">
+       </property>
+       <property name="cmp">
+           <bean id="cmp1" class="SpringXmlDependencyInjection.InnerBean.Desktop"  primary="true">   /* Desktop is the inner bean of Student */
+           </bean>
+       </property>
+
+    </bean>
+
+
+Student stu=getbean(Laptop.class)    -> fine
+Dektop lap= getbean(Desktop.class)  --> error.

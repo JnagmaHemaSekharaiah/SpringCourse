@@ -7,7 +7,7 @@ public class Student
     private int Age;
     private Laptop lap;
 
-    @ConstructorProperties({"age","lap"})
+
     public Student(int age ,Laptop lap)
     {
       this.Age=age;
