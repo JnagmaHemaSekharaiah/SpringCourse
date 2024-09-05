@@ -1,45 +1,13 @@
-Making Bean Name
-------------------
-1.Here method name is default bean Desktop name
-
+Scope
+-------
 @Configuration
-public class AppConfig
+public class ScopeConfig
 {
-
-    @Bean(name="cmp")   /* we  change method name 'cmp' */
-    public Desktop desktop()  /* we can also use the desktop as bean name */
+    @Bean(name = "desk1")
+    @Scope("prototype")    /Single ton
+    public  Desktop desktop()
     {
-       return new Desktop();
+      return  new Desktop();
     }
 
-}
-
-Class App
-{
-main()
-{
-Desktop desk = get.COntext("cmp",Desktop.class);
-}
-}
-
-we can able to give multiple names for sigle bean
-------------------------------------------------
-@Configuration
-public class AppConfig
-{
-
-    @Bean(name={"cmp1","cmp2","bean1"})   /* we  change method name 'cmp' */
-    public Desktop desktop()
-    {
-       return new Desktop();
-    }
-
-}
-
-Class App
-{
-main()
-{
-Desktop desk = get.COntext("bean",Desktop.class);
-}
 }
