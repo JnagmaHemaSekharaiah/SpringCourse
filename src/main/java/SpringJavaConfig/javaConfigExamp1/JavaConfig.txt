@@ -1,0 +1,14 @@
+Java Config
+-----------
+
+@Configuration
+public class AppConfig
+{
+
+    @Bean      /* bean annotation */
+    public Desktop desktop()
+    {
+       return new Desktop();
+    }
+
+}
