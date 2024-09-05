@@ -1,0 +1,108 @@
+Auto Wire
+----------
+Student Class having Computer (Interface) as variable
+Desktop is another class implementing Computer.
+
+
+Case 1: We making like as below it will tightly coupled
+public class AutoWire
+{
+    @Bean(name = "std")
+    public Student student()
+    {
+        Student std = new Student();
+        std.setAge(20);
+        std.setCmp(desktop());      /* tightly coupled */
+        return std;
+    }
+    @Bean(name = "desk1")
+    public Desktop desktop()
+    {
+        return new Desktop();
+    }
+}
+
+App
+{
+Computer.getBean(,"")
+}
+
+-----------------------
+
+Case 2: We making like as below it will  relsease tightly coupling
+public class AutoWire
+{
+    @Bean(name = "std")
+    public Student student(Computer cmp)
+    {
+        Student std = new Student();
+        std.setAge(20);
+        std.setCmp(cmp);      /* tightly coupled */
+        return std;
+    }
+    @Bean(name = "desk1")
+    public Desktop desktop()
+    {
+        return new Desktop();
+    }
+}
+
+App
+{
+Computer.getBean(,"")
+}
+
+-------------------------
+
+case 2 : If Two beans are same type [By Using @Qualifier annotation ]
+
+public class AutoWire
+{
+    @Bean(name = "std")
+    public Student student( @Qualifier("lap") Computer cmp)  /* we can make as Qualifier annotation and pass the name of the bean name
+    {
+        Student std = new Student();
+        std.setAge(20);
+        std.setCmp(cmp);
+        return std;
+    }
+
+    @Bean(name = "desk1")
+    public Desktop desktop()
+    {
+        return new Desktop();
+    }
+
+    @Bean(name = "lap")
+    public Laptop laptop()
+    {
+        return new Laptop();
+    }
+}
+
+-----------
+case 2 : If Two beans are same type [By making @primary annotation in the bean we can choose the bean]
+
+public class AutoWire
+{
+    @Bean(name = "std")
+    public Student student( @Qualifier("lap") Computer cmp)  /* we can make as Qualifier annotation and pass the name of the bean name
+    {
+        Student std = new Student();
+        std.setAge(20);
+        std.setCmp(cmp);
+        return std;
+    }
+
+    @Bean(name = "desk1")
+    public Desktop desktop()
+    {
+        return new Desktop();
+    }
+
+    @Bean(name = "lap")
+    public Laptop laptop()
+    {
+        return new Laptop();
+    }
+}
