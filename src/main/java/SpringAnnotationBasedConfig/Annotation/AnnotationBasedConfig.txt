@@ -1,0 +1,14 @@
+Stereotype Annotation
+---------------------
+1.Among Stereotype Annotation @componennt is a Class level annotation.
+2.by using of these annotations on the Class we can tell to Spring to mange these Annotated classes
+3.By mentioning @Component to class Spring will do create object for that Class.
+4.While using of @autowire annotation  by using of @Qualifier("<class Name(Start with Small letter)>") and @Primary we can specify the exact class by Field injection, Constructor injection and Setter injection.
+
+
+4.@Autowire(Qualifier="<bean name>") or @Primary /to make wiring between to beans of same type
+5.@Qualifier is a head of @Primary annotation
+6.@ComponentScan(basepackage="<package Name>")
+7.Scope("")
+8.Value("")
+
