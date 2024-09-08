@@ -54,7 +54,7 @@ Computer.getBean(,"")
 
 -------------------------
 
-case 2 : If Two beans are same type [By Using @Qualifier annotation ]
+case 1 : If Two beans are same type [By Using @Qualifier annotation ]
 
 public class AutoWire
 {
@@ -106,3 +106,30 @@ public class AutoWire
         return new Laptop();
     }
 }
+------
+
+case 3 : Case 3 : if we mention Primary and Qualifier annotation in the file class it always choose Qualifier
+           @Bean(name="p")
+             @Scope("singleton")
+            public Student student( Computer cmp)
+           {
+             Student  stu= new Student();
+             stu.setAge(20);
+             stu.setDes(cmp);
+             return stu;
+            }
+
+
+            @Bean
+            public Desktop desktop()
+            {
+               return  new Desktop();
+            }
+
+            @Bean
+            @Primary
+            public Laptop laptop()
+            {
+                return new Laptop();
+            }
+
