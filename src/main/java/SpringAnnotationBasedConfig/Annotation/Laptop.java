@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Primary
-@Scope("singleton")
+
 public class Laptop implements Computer
 {
 
