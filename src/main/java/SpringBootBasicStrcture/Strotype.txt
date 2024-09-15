@@ -1,0 +1,15 @@
+What Different applications of Spring will also done by Spring Boot
+
+Stereotype Annotations
+----------------------
+
+[ Client ] --->  {Controller -> Service  -> Repository} -> [Data base]
+
+
+
+Controller :
+
+Service    : It Holds the Business Logic. It is same as @Component.By Documentation Purpose we make as @Service
+
+Repository : It Will Retrive Data from data base.It is same as @Component.By Documentation Purpose we make as @Repositrory
+
