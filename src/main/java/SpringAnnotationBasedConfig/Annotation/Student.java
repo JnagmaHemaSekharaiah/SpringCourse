@@ -10,7 +10,7 @@ public class Student
     @Value("20")
     private int age;
 
-    @Autowired
+  //  @Autowired
     private Computer cmp;
 
     public Student()
