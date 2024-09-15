@@ -1,0 +1,18 @@
+Constructor Injection
+---------------------
+Class Student
+{
+    public Student(int x)
+    {
+     this.x =x;
+    }
+}
+
+Config Class
+-----------
+    @Bean(name="std")
+    public Student student()
+    {
+        Student std = new Student(20);
+        return std;
+    }
