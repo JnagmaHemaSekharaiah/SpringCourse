@@ -1,0 +1,129 @@
+Spring MVC
+------------
+
+
+Client -->   Controller ------> Model  <--> Data base
+                   |
+  /|\              |
+   |               |
+   -------------view [.jsp file]
+
+
+
+Sequence : C -> M -> V
+
+View <-> Service
+
+Spring doesn't support JSP
+Conversion will happen from JSP to Servlets using "Tomcat Jasper"
+Spring boot having the internal tomcat server
+
+Spring MVC
+----------
+
+Internal Handling by Spring: Spring MVC (or Spring Boot’s embedded server) internally uses a Dispatcher Servlet to
+route all HTTP requests. The Dispatcher Servlet extends the HTTP Servlet class, which has its own implementation of
+doGet(), doPost(), and other HTTP methods.
+
+Dispatch to Controller: When the Dispatcher Servlet receives a GET request, it checks the request’s URL and HTTP method,
+finds the appropriate controller method (like handleGetRequest()), and invokes it.
+
+No Need for Custom doGet(): As a Spring developer, you typically don’t need to implement doGet() or doPost() directly.
+The DispatcherServlet and Spring’s annotations handle routing and method invocation based on the HTTP method and URL path
+
+---------------------------------------------------------------------------------------------------------
+@Controller      / Controller Will Convert Class into Servlet
+public class HomeController
+{
+    @RequestMapping("/")
+    public String home()
+    {
+        System.out.println("home method caled...");
+        return "Welcome....";
+    }
+}
+
+@Controller
+-----------
+Purpose : making of @Controller on the class as 'Spring MVC' controller indicating that it contain methods
+          Capable of handling HTTP request.
+Scope   : Placing @Controller at the class level making Spring to scan and register this class as a bean,
+          making it capable of handling web requests within the application.
+In a Spring MVC application, @Controller classes handle user requests by providing data (often via a Model)
+and returning a view to be rendered. @Controller is typically used with view-based applications (HTML, JSP,
+Thymeleaf templates),where the application renders views for the user
+
+@RequestMapping Annotation
+--------------------------
+The @RequestMapping annotation maps HTTP requests to handler methods within the @Controller class. It
+can be used at both the class level and the method level, allowing you to define request paths in a flexible,
+hierarchical manner.
+
+-------------------------------------------------------------------------------------------------------------
+@RestController
+public class HomeController
+{
+    @RequestMapping("/")
+    public String home()
+    {
+        System.out.println("home method caled...");
+        return "Welcome....";
+    }
+}
+
+
+@RequestController
+------------------
+The @RestController annotation in Spring is used to create RESTful web services
+It simplifies the creation of web APIs by combining the @Controller and @ResponseBody annotations.
+
+@Controller   : Indicates that the class serves as a Spring MVC controller.
+@ResponseBody : Signals that the return value of each method should be directly written to the HTTP response
+                body (usually in JSON or XML format).
+
+-------------------------------------------------------------------------------------------------------------
+
+@Controller
+public class HomeController
+{
+    @RequestMapping("/")
+    @ResponseBody   // Indicates the return value will be written to the response body
+    public String home()
+    {
+        System.out.println("home method caled...");
+        return "Welcome....";
+    }
+}
+
+The @ResponseBody annotation in Spring is used to indicate that the return value of a method should be written
+directly to the HTTP response body, rather than being interpreted as a view name. It is typically used in RESTful APIs
+where the response is returned as data (e.g., JSON or XML) instead of rendering a view.
+
+-------------------------------------------------------------------------------------------------------------
+
+NOTE : In Spring Web there is library it covert java objects to JSON objects it named as the Jackson library
+
+ @PostMapping("/products")
+     public void addProduct(@RequestBody Product prod)
+     {
+          System.out.println(prod);
+          service.addProduct(prod);
+     }
+
+@RequestBody this annotation will accept JSON data and convert into Java object
+
+
+-------------------------------------------------------------------------------------------------------------
+
+@RequestMapping("/products/{prodId}")
+     public Product getProductById(@PathVariable int prodId)
+     {
+          return service.getProductById(prodId);
+     }
+
+@PathVariable  it will accept the variable
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
