@@ -1,0 +1,66 @@
+ORM(Object releation mapping )
+We use ORM to connect Java object into the data base tables. ORM is the example for that. But some cons are there using this
+SPring JAP is more good than ORM
+
+Spring JPA
+
+
+spring.datasource.url=jdbc:h2:mem:testdb
+
+spring.datasource.url -> We will assign the data base url here
+h2      -> data base
+mem     -> in memory
+testdb  -> data base name
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+@Repository
+public interface StudentRepository extends JpaRepository<Student, Long>
+{
+    // Custom query methods can be added here
+}
+
+1. Identifies the Class as a Repository Component
+Purpose: The @Repository annotation tells Spring that the annotated class is a repository, responsible for data retrieval,
+         storage, and search operations.
+Behavior: By marking a class with @Repository, Spring automatically detects it during component scanning and registers it
+          as a Spring Bean in the application context. This allows the class to be injected into other Spring-managed beans.
+2. Exception Translation
+Benefit: The @Repository annotation triggers Spring's exception translation mechanism.
+         Explanation: If a DataAccessException (such as SQLException) occurs, Spring wraps it in a more specific, unchecked DataAccessException,
+         allowing you to handle it at a higher level without needing to write try-catch blocks for SQL exceptions. This makes code cleaner and abstracts low-level details.
+3. Commonly Used with Spring Data JPA
+Purpose:  In Spring Data JPA, @Repository is commonly used with interfaces that extend JpaRepository or CrudRepository.
+Behavior: This enables out-of-the-box CRUD operations and query methods for entities, without requiring manual implementation.
+          Spring Data JPA automatically provides implementations for repository interfaces.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+@Component
+public interface StudentRepository extends JpaRepository<Student, Long>
+{
+    // Custom query methods can be added here
+}
+@Component tells Spring that the annotated class is a Spring bean.
+During component scanning, Spring will detect this class and register it in the application context.
+Classes annotated with @Component can then be injected into other beans using @Autowired.
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+@Entity
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long prodId;
+    private String prodName;
+    private double price;
+
+    // Getters and setters
+}
+
+@GeneratedValue(strategy = GenerationType.IDENTITY) by providing like this Our Hibernet will auto create the ID to mangae in better way
+
+
+
